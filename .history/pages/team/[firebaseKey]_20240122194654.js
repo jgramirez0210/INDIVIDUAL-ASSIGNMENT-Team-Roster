@@ -14,14 +14,10 @@ const ViewTeamMember = () => {
   const [teamMember, setTeamMember] = useState(null);
 
   useEffect(() => {
-    getSingleTeamMember(firebaseKey)
-      .then((fetchedTeamMember) => {
-        const teamMemberData = fetchedTeamMember[firebaseKey];
-        setTeamMember(teamMemberData);
-      })
-      .catch((error) => {
-        console.error('Error fetching team member: ', error);
-      });
+    getSingleTeamMember(firebaseKey).then((fetchedTeamMember) => {
+      const teamMemberData = fetchedTeamMember[firebaseKey];
+      setTeamMember(teamMemberData);
+    });
   }, [firebaseKey]);
 
   return (
