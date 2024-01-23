@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';// eslint-disable-line no-unused-vars
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
@@ -14,9 +14,9 @@ const initialState = {
   position: '',
 };
 
-function AddTeamMemberForm({ obj }) {
+function BookForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
-  const [authors, setAuthors] = useState([]);// eslint-disable-line no-unused-vars
+  const [authors, setAuthors] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
@@ -31,14 +31,11 @@ function AddTeamMemberForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
-      // eslint-disable-next-line no-undef
       updateBook(formInput).then(() => router.push(`/book/${obj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
-      // eslint-disable-next-line no-undef
       createBook(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-        // eslint-disable-next-line no-undef
         updateBook(patchPayload).then(() => {
           router.push('/');
         });
@@ -85,23 +82,80 @@ function AddTeamMemberForm({ obj }) {
           required
         />
       </FloatingLabel>
+
+      {/* AUTHOR SELECT  */}
+      <FloatingLabel controlId="floatingSelect" label="Author">
+        <Form.Select
+          aria-label="Author"
+          name="author_id"
+          onChange={handleChange}
+          className="mb-3"
+          value={formInput.author_id} // FIXME: modify code to remove error
+          required
+        >
+          <option value="">Select an Author</option>
+          {
+            authors.map((author) => (
+              <option
+                key={author.firebaseKey}
+                value={author.firebaseKey}
+              >
+                {author.first_name} {author.last_name}
+              </option>
+            ))
+          }
+        </Form.Select>
+      </FloatingLabel>
+
+      {/* DESCRIPTION TEXTAREA  */}
+      <FloatingLabel controlId="floatingTextarea" label="Description" className="mb-3">
+        <Form.Control
+          as="textarea"
+          placeholder="Description"
+          style={{ height: '100px' }}
+          name="description"
+          value={formInput.description}
+          onChange={handleChange}
+          required
+        />
+      </FloatingLabel>
+
+      {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
+      <Form.Check
+        className="text-white mb-3"
+        type="switch"
+        id="sale"
+        name="sale"
+        label="On Sale?"
+        checked={formInput.sale}
+        onChange={(e) => {
+          setFormInput((prevState) => ({
+            ...prevState,
+            sale: e.target.checked,
+          }));
+        }}
+      />
+
       {/* SUBMIT BUTTON  */}
-      <Button type="submit">{formInput.firebaseKey ? 'Update' : 'Create'} Player</Button>
+      <Button type="submit">{formInput.firebaseKey ? 'Update' : 'Create'} Book</Button>
     </Form>
   );
 }
 
-AddTeamMemberForm.propTypes = {
+BookForm.propTypes = {
   obj: PropTypes.shape({
-    name: PropTypes.string,
+    description: PropTypes.string,
     image: PropTypes.string,
-    position: PropTypes.string,
+    price: PropTypes.string,
+    sale: PropTypes.bool,
+    title: PropTypes.string,
+    author_id: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
 };
 
-AddTeamMemberForm.defaultProps = {
+BookForm.defaultProps = {
   obj: initialState,
 };
 
-export default AddTeamMemberForm;
+export default BookForm;

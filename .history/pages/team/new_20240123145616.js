@@ -4,7 +4,7 @@ import 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { getTeamMember } from '../../api/teamData';
 import TeamMemberCard from '../../components/TeamMemberCard';
-import AddTeamMemberForm from '../../components/forms/addTeamMemberForm';
+import BookForm from '../components/forms/addTeamMemberForm';
 
 export default function ViewAllAuthors() {
   const [authors, setTeamMember] = useState([]);
@@ -25,7 +25,7 @@ export default function ViewAllAuthors() {
       <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={() => setShowForm(true)}>
         Add Team Member
       </Button>
-      {showForm && <AddTeamMemberForm />} {/* Add this line */}
+      {showForm && <BookForm />} {/* Add this line */}
       {authors.filter((author) => author.uid === currentUserUid).map((author) => (
         <TeamMemberCard key={author.firebaseKey} teamMemberObj={author} onUpdate={handleUpdate} />
       ))}

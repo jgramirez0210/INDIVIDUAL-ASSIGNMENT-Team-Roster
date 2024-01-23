@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';// eslint-disable-line no-unused-vars
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
@@ -16,7 +16,7 @@ const initialState = {
 
 function AddTeamMemberForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
-  const [authors, setAuthors] = useState([]);// eslint-disable-line no-unused-vars
+  const [authors, setAuthors] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
@@ -31,14 +31,11 @@ function AddTeamMemberForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
-      // eslint-disable-next-line no-undef
       updateBook(formInput).then(() => router.push(`/book/${obj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
-      // eslint-disable-next-line no-undef
       createBook(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-        // eslint-disable-next-line no-undef
         updateBook(patchPayload).then(() => {
           router.push('/');
         });
@@ -100,8 +97,8 @@ AddTeamMemberForm.propTypes = {
   }),
 };
 
-AddTeamMemberForm.defaultProps = {
+BookForm.defaultProps = {
   obj: initialState,
 };
 
-export default AddTeamMemberForm;
+export default BookForm;

@@ -4,7 +4,7 @@ import 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { getTeamMember } from '../../api/teamData';
 import TeamMemberCard from '../../components/TeamMemberCard';
-import AddTeamMemberForm from '../../components/forms/addTeamMemberForm';
+import BookForm from '../../components/forms/addTeamMemberForm';
 
 export default function ViewAllAuthors() {
   const [authors, setTeamMember] = useState([]);
