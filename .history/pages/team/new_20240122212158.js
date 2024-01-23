@@ -1,11 +1,3 @@
-import firebase from 'firebase/app';
-import Button from 'react-bootstrap/Button';
-import 'firebase/auth';
-import React, { useEffect, useState } from 'react';
-import { getTeamMember } from '../../api/teamData';
-import TeamMemberCard from '../../components/TeamMemberCard';
-import AddTeamMemberForm from '../../components/forms/addTeamMemberForm';
-
 export default function ViewAllAuthors() {
   const [authors, setTeamMember] = useState([]);
   const [showForm, setShowForm] = useState(false); // Add this line

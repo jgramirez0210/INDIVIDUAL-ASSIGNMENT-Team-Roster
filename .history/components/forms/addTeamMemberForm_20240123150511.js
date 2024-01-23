@@ -38,7 +38,6 @@ function AddTeamMemberForm({ obj }) {
       // eslint-disable-next-line no-undef
       createBook(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-        // eslint-disable-next-line no-undef
         updateBook(patchPayload).then(() => {
           router.push('/');
         });

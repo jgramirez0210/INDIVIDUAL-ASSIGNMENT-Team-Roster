@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';// eslint-disable-line no-unused-vars
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
@@ -14,9 +14,9 @@ const initialState = {
   position: '',
 };
 
-function AddTeamMemberForm({ obj }) {
+function BookForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
-  const [authors, setAuthors] = useState([]);// eslint-disable-line no-unused-vars
+  const [authors, setAuthors] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
@@ -31,14 +31,11 @@ function AddTeamMemberForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
-      // eslint-disable-next-line no-undef
       updateBook(formInput).then(() => router.push(`/book/${obj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
-      // eslint-disable-next-line no-undef
       createBook(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-        // eslint-disable-next-line no-undef
         updateBook(patchPayload).then(() => {
           router.push('/');
         });
@@ -86,22 +83,25 @@ function AddTeamMemberForm({ obj }) {
         />
       </FloatingLabel>
       {/* SUBMIT BUTTON  */}
-      <Button type="submit">{formInput.firebaseKey ? 'Update' : 'Create'} Player</Button>
+      <Button type="submit">{formInput.firebaseKey ? 'Update' : 'Create'} Book</Button>
     </Form>
   );
 }
 
-AddTeamMemberForm.propTypes = {
+BookForm.propTypes = {
   obj: PropTypes.shape({
     name: PropTypes.string,
     image: PropTypes.string,
     position: PropTypes.string,
+    sale: PropTypes.bool,
+    title: PropTypes.string,
+    author_id: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
 };
 
-AddTeamMemberForm.defaultProps = {
+BookForm.defaultProps = {
   obj: initialState,
 };
 
-export default AddTeamMemberForm;
+export default BookForm;

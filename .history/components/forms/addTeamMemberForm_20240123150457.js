@@ -31,14 +31,11 @@ function AddTeamMemberForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
-      // eslint-disable-next-line no-undef
-      updateBook(formInput).then(() => router.push(`/book/${obj.firebaseKey}`));
+      updateBook(formInput).then(() => router.push(`/book/${obj.firebaseKey}`));'updateBook' is not defined.
     } else {
       const payload = { ...formInput, uid: user.uid };
-      // eslint-disable-next-line no-undef
       createBook(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-        // eslint-disable-next-line no-undef
         updateBook(patchPayload).then(() => {
           router.push('/');
         });
