@@ -19,7 +19,7 @@ export default function ViewAllAuthors() {
 
   return (
     <div>
-      {authors.filter((author) => author.uid === currentUserUid).map((author) => (
+      {authors.filter(author => author.uid === currentUserUid).map((author) => (
         <TeamMemberCard key={author.firebaseKey} teamMemberObj={author} onUpdate={handleUpdate} />
       ))}
     </div>

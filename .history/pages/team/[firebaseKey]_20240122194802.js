@@ -20,7 +20,7 @@ const ViewTeamMember = () => {
         setTeamMember(teamMemberData);
       })
       .catch((error) => {
-        console.error('Error fetching team member: ', error);
+        console.error("Error fetching team member: ', error);
       });
   }, [firebaseKey]);
 

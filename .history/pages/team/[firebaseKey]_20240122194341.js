@@ -7,27 +7,28 @@ import { getSingleTeamMember } from '../../api/teamData';
 
 const ViewTeamMember = () => {
   const currentUserUid = firebase.auth().currentUser.uid;
-  console.warn('uid', currentUserUid);
   const router = useRouter();
   const { firebaseKey } = router.query;
 
   const [teamMember, setTeamMember] = useState(null);
 
   useEffect(() => {
-    getSingleTeamMember(firebaseKey)
-      .then((fetchedTeamMember) => {
-        const teamMemberData = fetchedTeamMember[firebaseKey];
-        setTeamMember(teamMemberData);
-      })
-      .catch((error) => {
-        console.error('Error fetching team member: ', error);
-      });
+    getSingleTeamMember(firebaseKey).then((fetchedTeamMember) => {
+      const teamMemberData = fetchedTeamMember[firebaseKey];
+      setTeamMember(teamMemberData);
+    });
   }, [firebaseKey]);
 
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
-      {teamMember && teamMember.uid === currentUserUid && <Card.Img variant="top" src={teamMember.image} alt={teamMember.name} style={{ height: '400px' }} />}
+      {teamMember && <Card.Img variant="top" src={teamMember.image} alt={teamMember.name} style={{ height: '400px' }} />}
+      <Card.Body>
+        <Card.Title>{teamMember ? teamMember.name : 'Loading...'}</Card.Title>
+        <p className="card-text bold">Position: {teamMember ? teamMember.roll : 'Loading...'}</p>
+        {/* Rest of your code */}
+      </Card.Body>
     </Card>
   );
 };
+
 export default ViewTeamMember;

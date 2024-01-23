@@ -7,21 +7,16 @@ import { getSingleTeamMember } from '../../api/teamData';
 
 const ViewTeamMember = () => {
   const currentUserUid = firebase.auth().currentUser.uid;
-  console.warn('uid', currentUserUid);
   const router = useRouter();
   const { firebaseKey } = router.query;
 
   const [teamMember, setTeamMember] = useState(null);
 
   useEffect(() => {
-    getSingleTeamMember(firebaseKey)
-      .then((fetchedTeamMember) => {
-        const teamMemberData = fetchedTeamMember[firebaseKey];
-        setTeamMember(teamMemberData);
-      })
-      .catch((error) => {
-        console.error('Error fetching team member: ', error);
-      });
+    getSingleTeamMember(firebaseKey).then((fetchedTeamMember) => {
+      const teamMemberData = fetchedTeamMember[firebaseKey];
+      setTeamMember(teamMemberData);
+    });
   }, [firebaseKey]);
 
   return (
@@ -29,5 +24,5 @@ const ViewTeamMember = () => {
       {teamMember && teamMember.uid === currentUserUid && <Card.Img variant="top" src={teamMember.image} alt={teamMember.name} style={{ height: '400px' }} />}
     </Card>
   );
-};
+
 export default ViewTeamMember;
