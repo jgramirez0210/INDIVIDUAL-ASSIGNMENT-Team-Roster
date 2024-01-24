@@ -43,7 +43,8 @@ const getSinglePlayer = (firebaseKey) => new Promise((resolve, reject) => {
     },
   })
     .then((response) => response.json())
-    .then((data) => resolve(data));
+    .then((data) => {
+      resolve(data);
     })
     .catch(reject);
 });
@@ -56,11 +57,19 @@ const deletePlayer = (firebaseKey) => new Promise((resolve, reject) => {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => response.json())
-    .then((data) => resolve(data))
-    .catch(reject);
+    .then((response) => {
+      console.warn('Server response:', response);
+      return response.json();
+    })
+    .then((data) => {
+      console.warn('Server data:', data);
+      resolve(data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      reject(error);
+    });
 });
-
 // FIXME: UPDATE TEAM MEMBER
 const updatePlayer = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/team/${payload.firebaseKey}.json`, {

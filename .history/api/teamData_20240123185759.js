@@ -43,7 +43,8 @@ const getSinglePlayer = (firebaseKey) => new Promise((resolve, reject) => {
     },
   })
     .then((response) => response.json())
-    .then((data) => resolve(data));
+    .then((data) => {
+      resolve(data);
     })
     .catch(reject);
 });
@@ -58,7 +59,7 @@ const deletePlayer = (firebaseKey) => new Promise((resolve, reject) => {
   })
     .then((response) => response.json())
     .then((data) => resolve(data))
-    .catch(reject);
+    .catch(() => reject(error));
 });
 
 // FIXME: UPDATE TEAM MEMBER

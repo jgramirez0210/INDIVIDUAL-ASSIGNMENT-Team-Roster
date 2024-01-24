@@ -10,6 +10,7 @@ function TeamMemberCard({ teamMemberObj, onUpdate }) {
   // SO WE PASS THE FUNCTION FROM THE PARENT THAT GETS THE BOOKS
   const deleteThisPlayer = () => {
     if (window.confirm(`Delete ${teamMemberObj.name}?`)) {
+      console.warn('DELETE THIS TEAM MEMBER', teamMemberObj.firebaseKey);
       deletePlayer(teamMemberObj.firebaseKey).then(() => onUpdate());
     }
   };
