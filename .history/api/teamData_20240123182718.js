@@ -36,19 +36,21 @@ const createPlayer = (payload) => new Promise((resolve, reject) => {
 
 // FIXME: GET SINGLE TEAM MEMBER
 const getSinglePlayer = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/team/${firebaseKey}.json`, {
+  fetch(`${endpoint}/team.json?orderBy="firebaseKey"&equalTo="${firebaseKey}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
     .then((response) => response.json())
-    .then((data) => resolve(data));
+    .then((data) => {
+      console.warn(data);
+      resolve(data);
     })
     .catch(reject);
 });
 
-// DELETE PLAYER
+// FIXME: DELETE TEAM MEMBER
 const deletePlayer = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/team/${firebaseKey}.json`, {
     method: 'DELETE',
@@ -75,10 +77,13 @@ const updatePlayer = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+
+
 export {
   getPlayer,
   createPlayer,
   getSinglePlayer,
   deletePlayer,
   updatePlayer,
+  deleteSinglePlayer,
 };

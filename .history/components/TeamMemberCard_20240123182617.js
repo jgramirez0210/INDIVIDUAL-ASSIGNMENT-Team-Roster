@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
-import { deletePlayer } from '../api/teamData';
+import { deleteSinglePlayer } from '../api/teamData';
 
 function TeamMemberCard({ teamMemberObj, onUpdate }) {
   // FOR DELETE, WE NEED TO REMOVE THE BOOK AND HAVE THE VIEW RERENDER,
   // SO WE PASS THE FUNCTION FROM THE PARENT THAT GETS THE BOOKS
   const deleteThisPlayer = () => {
-    if (window.confirm(`Delete ${teamMemberObj.name}?`)) {
-      deletePlayer(teamMemberObj.firebaseKey).then(() => onUpdate());
+    if (window.confirm(`Delete ${teamMemberObj.first_name}?`)) {
+      deleteAuthorBooks(teamMemberObj.firebaseKey).then(() => onUpdate());
     }
   };
 

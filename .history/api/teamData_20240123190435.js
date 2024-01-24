@@ -43,7 +43,7 @@ const getSinglePlayer = (firebaseKey) => new Promise((resolve, reject) => {
     },
   })
     .then((response) => response.json())
-    .then((data) => resolve(data));
+    .then((data) => {resolve(data);
     })
     .catch(reject);
 });

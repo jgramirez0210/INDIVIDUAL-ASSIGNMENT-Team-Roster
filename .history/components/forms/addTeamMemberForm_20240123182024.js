@@ -36,7 +36,7 @@ function AddTeamMemberForm({ obj }) {
       createPlayer(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updatePlayer(patchPayload).then(() => {
-          router.push('/team/new');
+          router.push('/team/edit/new');
         });
       });
     }
