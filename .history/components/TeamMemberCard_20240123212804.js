@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { deletePlayer } from '../api/teamData';
 
 function TeamMemberCard({ teamMemberObj, onUpdate }) {
+  // FOR DELETE, WE NEED TO REMOVE THE BOOK AND HAVE THE VIEW RERENDER,
+  // SO WE PASS THE FUNCTION FROM THE PARENT THAT GETS THE BOOKS
   const deleteThisPlayer = () => {
     if (window.confirm(`Delete ${teamMemberObj.name}?`)) {
       deletePlayer(teamMemberObj.firebaseKey).then(() => onUpdate());
@@ -18,6 +20,7 @@ function TeamMemberCard({ teamMemberObj, onUpdate }) {
       <Card.Body>
         <Card.Title>{teamMemberObj.name}</Card.Title>
         <p className="card-text bold">Position: {teamMemberObj && teamMemberObj.position}</p>
+        {/* DYNAMIC LINK TO EDIT THE BOOK DETAILS  */}
         <Link href={`/team/edit/${teamMemberObj.firebaseKey}`} passHref>
           <Button variant="info">EDIT</Button>
         </Link>

@@ -18,6 +18,7 @@ function TeamMemberCard({ teamMemberObj, onUpdate }) {
       <Card.Body>
         <Card.Title>{teamMemberObj.name}</Card.Title>
         <p className="card-text bold">Position: {teamMemberObj && teamMemberObj.position}</p>
+        {/* DYNAMIC LINK TO EDIT THE PLAYER DETAILS  */}
         <Link href={`/team/edit/${teamMemberObj.firebaseKey}`} passHref>
           <Button variant="info">EDIT</Button>
         </Link>
