@@ -23,21 +23,8 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
 }
-.greeting {
-  background-color: #BD3039;
-  margin-bottom: 20px;
-}
-.sign-out {
-  background-color: #BD3039;
-  margin-bottom: 20px;
-}
-.sign-out:hover {
-  background-color: #0C2340;
-}
-.navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+h1 {
+  background: white;
 }
 .card-container {
   display: flex;

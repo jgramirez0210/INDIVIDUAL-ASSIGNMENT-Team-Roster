@@ -7,7 +7,7 @@ import { signOut } from '../utils/auth';
 
 export default function NavBar() {
   return (
-    <Navbar className="navbar" collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <Link passHref href="/">
           <Navbar.Brand>Team Roster</Navbar.Brand>
@@ -21,7 +21,7 @@ export default function NavBar() {
             <Link passHref href="/team/edit/new">
               <Nav.Link>Create NEW Player</Nav.Link>
             </Link>
-            <Button type="button" size="lg" className="sign-out" onClick={signOut}>Sign Out</Button>
+            <Button type="button" size="lg" className="sign-out"onClick={signOut}>Sign Out</Button>
           </Nav>
         </Navbar.Collapse>
       </Container>

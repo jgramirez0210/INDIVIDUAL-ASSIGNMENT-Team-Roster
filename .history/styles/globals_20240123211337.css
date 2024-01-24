@@ -25,19 +25,17 @@ body {
 }
 .greeting {
   background-color: #BD3039;
+  border-radius: 10px;
   margin-bottom: 20px;
 }
 .sign-out {
   background-color: #BD3039;
+  
+  border-radius: 10px;
   margin-bottom: 20px;
 }
 .sign-out:hover {
   background-color: #0C2340;
-}
-.navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .card-container {
   display: flex;

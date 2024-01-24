@@ -35,9 +35,7 @@ body {
   background-color: #0C2340;
 }
 .navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: #BD3039;
 }
 .card-container {
   display: flex;

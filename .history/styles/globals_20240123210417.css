@@ -18,26 +18,10 @@ a {
 }
 
 body {
-  background-image: url('../assets/fenwaypark.jpg');
+  background-image: url('../assets/fenwaypark.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-}
-.greeting {
-  background-color: #BD3039;
-  margin-bottom: 20px;
-}
-.sign-out {
-  background-color: #BD3039;
-  margin-bottom: 20px;
-}
-.sign-out:hover {
-  background-color: #0C2340;
-}
-.navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .card-container {
   display: flex;
